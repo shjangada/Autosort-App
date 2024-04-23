@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Actionable Buttons</title>
+    <style>
+        .button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .button-red {
+            background-color: rgb(181, 97, 97);
+            color: white;
+        }
+        .button-blue {
+            background-color: rgb(77, 77, 197);
+            color: white;
+        }
+        .button-green {
+            background-color: rgb(21, 49, 21);
+            color: white;
+        }
+        .button-yellow {
+            background-color: rgb(202, 202, 95);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Action</h1>
+
+    <button class="button button-red" onclick="redButtonClickV1()">Red Button</button><br>
+    <button class="button button-blue" onclick="blueButtonClick()">Blue Button</button><br>
+    <button class="button button-green" onclick="greenButtonClick()">Green Button</button><br>
+    <button class="button button-yellow" onclick="yellowButtonClick()">Yellow Button</button>
+
+    <script>
+        function redButtonClick() {
+            alert("You clicked the Red Button!");
+        }
+
+        function blueButtonClick() {
+            alert("You clicked the Blue Button!");
+        }
+
+        function greenButtonClick() {
+            alert("You clicked the Green Button!");
+        }
+
+        function yellowButtonClick() {
+            alert("You clicked the Yellow Button!");
+        }
+        function redButtonClickV1() {
+            $.ajax({
+                type: "GET",
+                url: "/redButtonClick",
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(error) {
+                    alert("Error: " + error.responseText);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

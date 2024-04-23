@@ -1,0 +1,69 @@
+from flask import Flask, render_template, request
+import pexpect, sys
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Retrieve the input values from the form
+        host = request.form.get('hostname')
+        pin = request.form.get('pin')
+        
+        # Perform any required processing on the input values
+        hostname = 'localhost'
+        username = 'kpllc'
+        password = 'Password'
+        command = 'ls -l'
+
+        try:
+            # Spawn an SSH child process
+            #ssh = pexpect.spawn(f'ssh {username}@{hostname}')
+            spawn = pexpect.spawnu if sys.version_info[0] >= 3 else pexpect.spawn
+            ssh = spawn('ssh -t kpllc@localhost bash --noprofile --norc')
+
+            # Expect password prompt
+            #password_prompt = ssh.expect(['password:', 'Permission denied'])
+            #ssh.logfile_read = sys.stdout
+            password_prompt = ssh.expect('assword:')
+            #ssh.sendline('123456')
+            
+            if password_prompt == 0:
+                # Send the password
+                ssh.sendline(password)
+                # Expect command prompt
+                #ssh.expect(f'{username}@')
+                ssh.expect('bash-[.0-9]+[$#]')
+                print("correct password. SSH connection success.")
+                # Send the command
+                ssh.sendline(command)
+
+                # Expect the command output
+                #ssh.expect(f'{username}@')
+                ssh.expect('bash-[.0-9]+[$#]')
+
+                # Print the output of the command
+                #print(ssh.before.decode())
+                print(ssh.before)
+
+                # Close the SSH connection
+                ssh.close()
+
+            elif password_prompt == 1:
+                # Handle wrong password
+                print("Incorrect password. SSH connection failed.")
+
+        except pexpect.EOF:
+            # Handle the end of file error
+                print("SSH connection terminated unexpectedly.")
+
+        except pexpect.TIMEOUT:
+            # Handle timeout error
+            print("SSH connection timed out.")
+                # Return a response or redirect to another page
+    return "Received input values: value1 = {}, value2 = {}".format(host, pin)
+    
+    # If it's a GET request, render the template with the input form
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run()

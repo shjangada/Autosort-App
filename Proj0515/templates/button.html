@@ -1,0 +1,159 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Manage Motor{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="Display1">Home
+            <br>
+            
+
+        <!-- SORTING -->
+        
+        <form method="POST" action="/sort">
+            <button class="btn btn-info" type="submit">Start Sorting</button>
+        </form>
+        <br>    
+
+
+        <!-- Button trigger modal
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" action ="/sort">
+    Start Sorting
+        </button>
+  
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sorting Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                Begin sorting?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <form method="POST" action="/sort">
+                    <button class="btn btn-primary" type="submit">Proceed</button>
+                </div>
+            </div>
+            </div>
+        </div> -->
+
+            <hr class="mt-3 mb-3" color="black" />
+
+            <!-- COLOR SELECTION-->
+            <h2 class="lead"><strong>Color Selection</strong>
+            <br>
+            <br>
+            
+            <!--
+                <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+                <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css">  
+                
+                <py-script> 
+                def colorSettings():
+                    f = open('SortSettings.txt', 'a')
+                    f.write('Red')
+                </py-script>
+            
+            !-->
+
+
+
+            <form method="POST" action="/RedButton">
+                <button class="btn btn-danger" type="submit">Red</button>
+            </form>
+            <br>
+
+            <form method="POST" action="/PinkButton">
+                <button class="btn btn-danger" type="submit">Pink/Purple</button>
+            </form>
+            <br>
+
+            <form method="POST" action="/BlueButton">
+                <button class="btn btn-primary" type="submit">Blue</button>
+            </form>
+            <br>
+
+            <form method="POST" action="/GreenButton">
+                <button class="btn btn-success" type="submit">Green</button>
+            </form>
+            <br>
+
+            <form method="POST" action="/YellowButton">
+                <button class="btn btn-warning" type="submit">Yellow</button>
+            </form>
+            <br>
+
+            <form method="POST" action="/OrangeButton">
+                <button class="btn btn-warning" type="submit">Orange</button>
+            </form>
+            <br>
+
+
+            <form method="POST" action="/GreyButton">
+                <button class="btn btn-light" type="submit">W/B</button> 
+            </form>
+            <br>
+
+            <form method="POST" action="/ClearColor">
+                <button class="btn btn-info" type="submit">Clear</button> 
+            </form>
+            <br>
+
+            <hr class="mt-3 mb-3" color="black" />
+
+            <!-- COLOR SELECTION-->
+            <h2 class="lead"><strong>Size Selection</strong>
+                <br>
+                <br>
+            
+            <form method="POST" action="/Small">
+                <button class="btn btn-light" type="submit">Small</button> 
+            </form>
+            <br>
+
+            <form method="POST" action="/Large">
+                <button class="btn btn-light" type="submit">Large</button> 
+            </form>
+            <br>
+
+            <hr class="mt-3 mb-3" color="black" />
+
+           
+            <form method="POST" action="/report">
+                <button class="btn btn-info" type="submit">Activity Log</button>
+            </form>
+            <br>
+
+            <input type="button" class="btn btn-info" value="View User Manual" onclick= relocate_home()>
+            <script>
+            function relocate_home()
+            {
+                location.href = "https://docs.google.com/document/d/1TpuM_DPkGLSSBPikQHZJdfKv8UxF_d-IFsaih3YRtEQ/edit?usp=sharing";
+            } 
+            </script>
+   
+    <br>
+    <br>
+    <!--
+    <a href="/index">
+        Logout
+    </a>
+    -->
+
+    <a href="/">
+        Logout
+    </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
